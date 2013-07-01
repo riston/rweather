@@ -19,8 +19,6 @@ config(['$routeProvider', '$locationProvider',
 
     $routeProvider.when('/weather', {
       redirectTo: '/weather/Estonia,Rakvere'
-      // templateUrl: 'partials/current.html',
-      // controller: 'CurrentWeatherCtrl'
     });
     $routeProvider.when('/weather/:location', {
       templateUrl: 'partials/current.html',
@@ -36,7 +34,7 @@ config(['$routeProvider', '$locationProvider',
       }
     });
     $routeProvider.otherwise({
-      redirectTo: '/view1'
+      redirectTo: '/weather'
     });
 
     //    $locationProvider.html5Mode(true);
