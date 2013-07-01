@@ -1,0 +1,79 @@
+<div class="pure-g-r content-ribbon">
+
+    <div class="pure-u-1-5">
+        <div class="pure-menu pure-menu-open">
+            <ul>
+                <li><a ng-href="#/weather/Estonia,Tallinn" ng-click="location='Estonia,Tallinn';getCurrentWeather()">Tallinn</a></li>
+                <li><a href="#/weather/Estonia,Tartu">Tartu</a></li>
+                <li><a href="#/weather/Estonia,Narva">Narva</a></li>
+                <li><a href="#/weather/Estonia,Kohtla-Järve">Kohtla-Järve</a></li>
+                <li><a href="#/weather/Estonia,Viljandi">Viljandi</a></li>
+                <li><a href="#/weather/Estonia,Pärnu">Pärnu</a></li>
+                <li><a ng-href="#/weather/Estonia,Rakvere">Rakvere</a></li>
+                <li><a href="#/weather/Estonia,Kärdla">Kärdla</a></li>
+                <li><a href="#/weather/Estonia,Kuressaare" ng-click="location='Estonia,Kuressaare'">Kuressaare</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="pure-u-4-5">
+        <div class="pure-u-1 l-box">
+            <form class="pure-form">
+                <input type="text" class="pure-input" name="location" id="location" ng-model="location" placeholder="Enter location"/>
+
+                <button type="submit" class="pure-button" id="search" ng-click="getCurrentWeather()">Search</button>
+            </form>
+
+
+            <div class="pure-g-r">
+                <div class="pure-u-1-1">
+                    <div class="pure-g-r">
+                        <div class="pure-u-1-3">
+                            <div class="l-box">
+                                <h1>{{ currentWeather.main.temp | number:0 }} °C</h1>
+                                <h2>{{ currentWeather.sys.country }}, {{ currentWeather.name }}</h2>
+                            </div>
+
+                        </div>
+                        <div class="pure-u-2-3">
+                            <div class="l-box cloud" weather-icon="{{ currentWeather.weather[0].icon }}" icon="large">
+                                <div><strong>{{ currentWeather.weather[0].description }}</strong></div>
+                                <div><strong>Wind:</strong> {{ currentWeather.wind.speed | number:0 }} m/s</div>
+                                <div><strong>Pressure:</strong> {{ currentWeather.main.pressure | number:0 }} mb</div>
+                                <div><strong>Hummidity:</strong> {{ currentWeather.main.humidity }} %</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="pure-g-r">
+    <div class="pure-u-1">
+        <div class="map-container">
+            <div class="map" id="basicMap"></div>
+        </div>
+    </div>
+</div>
+
+<div class="pure-g-r">
+    <div class="pure-u-1-4" ng-repeat="item in forecast">
+        <div class="l-box" weather-icon="{{ item.weather[0].icon }}">
+            <h3>{{ item.dt * 1000 | date:'EEEE dd.MM'}} </h3>
+            <div>
+                <div><h2>{{ item.temp.day | number:0 }} °C</h2></div>
+                <div><strong>{{ item.weather[0].description }}</strong></div>
+                <div><strong>Wind:</strong> {{ item.speed | number:0 }} m/s</div>
+                <div><strong>Pressure:</strong> {{ item.pressure | number:0 }} mmHg</div>
+                <div><strong>Hummidity:</strong> {{ item.humidity }} %</div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
