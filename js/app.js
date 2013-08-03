@@ -20,13 +20,14 @@ config(['$routeProvider', '$locationProvider',
     $routeProvider.when('/weather', {
       redirectTo: '/weather/Estonia,Rakvere'
     });
+
     $routeProvider.when('/weather/:location', {
       templateUrl: 'partials/current.html',
       controller: 'CurrentWeatherCtrl',
       resolve: {
         weather: function($q, $route, WeatherFactory, WeatherService) {
           var location = $route.current.params.location;
-          
+
           console.log('Route', $route.current.params);
           var promiseCurrent = WeatherFactory.query(location);
           return promiseCurrent;

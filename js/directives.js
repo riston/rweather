@@ -31,13 +31,6 @@ directives.directive('map', ['MapService', 'OpenLayerService',
       restrict: 'C',
       link: function(scope, element, attributes) {
         OpenLayerService.render('basicMap');
-        // //Center of map
-
-        // scope.$watch('map', function() {
-        //   if (scope.map === undefined) return;
-        //   console.log('Changed map ', scope.map);
-        //   LeafletService.panTo([scope.map.lon, scope.map.lat], 6);
-        // });
         scope.$watch('map', function() {
           if (scope.map === undefined) return;
 
@@ -86,8 +79,6 @@ directives.directive('weatherIcon', [
           if (iconMapping.hasOwnProperty(icon)) {
             load = iconMapping[icon];
           }
-          console.log('Attributes ', attributes);
-
 
           element.css({
             'background': 'url("img/weather/' + load + '.png") center right',

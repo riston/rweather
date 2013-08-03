@@ -26,7 +26,7 @@ services.service('WeatherService', [function () {
     };
 }]);
 
-services.service('LeafletService', ['$timeout', 'MapService', 
+services.service('LeafletService', ['$timeout', 'MapService',
     function ($timeout, MapService) {
     console.log('Leaflet map');
     var EstoniaCord = { lat: 59, lon: 24 };
@@ -45,7 +45,7 @@ services.service('LeafletService', ['$timeout', 'MapService',
     });
 
     var map = L.map('basicMap', {
-        layers: [osm]        
+        layers: [osm]
     }).setView([58.9239, 25.0136070], 7);
     map.addLayer(rain);
 
@@ -67,7 +67,6 @@ services.service('OpenLayerService', ['MapService', function (MapService) {
     var mapnik = new OpenLayers.Layer.OSM();
     // Stations
     var stations = new OpenLayers.Layer.Vector.OWMStations("Stations");
-    console.log('Stations ', stations);
     // Current weather
     var city = new OpenLayers.Layer.Vector.OWMWeather("Weather");
 
@@ -100,15 +99,12 @@ services.service('OpenLayerService', ['MapService', function (MapService) {
       'ascending': false
     });
     map.addControl(ls);
-    
+
     return map;
 }]);
 
 services.factory('WeatherFactory', function($http) {
     return {
-        call: function() {
-            console.log('Called');
-        },
 
         query: function(location) {
             var url = 'http://api.openweathermap.org/data/2.5/weather';
@@ -120,7 +116,6 @@ services.factory('WeatherFactory', function($http) {
                     callback:'JSON_CALLBACK'
                 }
             });
-            this.call();
             return promise;
         },
         forecast: function(location) {

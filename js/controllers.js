@@ -13,12 +13,21 @@ app.controller('MyCtrl2', [function() {
 }]);
 
 app.controller('MyCtrl3', [function() {
-        
+
 }]);
-  
-app.controller('CurrentWeatherCtrl', 
-    ['$scope', '$location', '$routeParams', 'WeatherFactory', 'MapService', 'weather',
-        function($scope, $location, $routeParams, WeatherFactory, mapService, weather) {
+
+app.controller('CurrentWeatherCtrl',
+    ['$rootScope', '$scope', '$location', '$routeParams', 'WeatherFactory', 'MapService', 'weather',
+        function($rootScope, $scope, $location, $routeParams, WeatherFactory, mapService, weather) {
+
+  $rootScope.$on('$routeChangeStart', function(event, next, current) {
+    console.log('Route change started');
+  });
+
+  $rootScope.$on('$routeChangeSuccess', function(event, next, current) {
+    console.log('Route change success');
+  });
+
 
   $scope.extractResult = function(result) {
      $scope.currentWeather  = result.data;
@@ -54,15 +63,5 @@ app.controller('CurrentWeatherCtrl',
   $scope.location = $routeParams.location || 'Estonia,Rakvere';
 
   $scope.extractResult(weather);
-
-
-  // $scope.getCurrentWeather();
-//  $scope.search = function() {
-//      $scope.currentWeather.query($scope.location);
-//
-////      console.log(Weather.list({q: $scope.location}));
-//      console.log('Data is loaded');
-//
-//  };
 
 }]);
