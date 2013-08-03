@@ -14,7 +14,7 @@ body {
     .header .pure-menu {
         padding: 0.5em;
     }
-    
+
         .header .pure-menu li a:hover {
             background: none;
             border: none;
@@ -92,7 +92,7 @@ input#location {
 }
 
 button#search {
-    font-size: 1.5em;
+    font-size: 1.6em;
 }
 
 .map-container {
